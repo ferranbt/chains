@@ -411,6 +411,11 @@ impl Chain {
     /// Returns true if the chain contains Optimism configuration.
     #[inline]
     pub const fn is_optimism(self) -> bool {
+        // if chain id is 901, it is an optimism dev chain
+        if self.id() == 901 {
+            return true;
+        }
+
         matches!(
             self.kind(),
             ChainKind::Named(
